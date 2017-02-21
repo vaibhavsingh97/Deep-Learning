@@ -25,7 +25,6 @@ def calculate_residual(actual, predicted):
 residuals = calculate_residual(y_values, model.predict(x_values))
 print("Mean squared error: ", np.mean(residuals))
 print("Coefficient of determination: ", model.score(x_values, y_values))
-
 # Plotting on matplotlib
 plt.figure(1)
 plt.scatter(x_values, y_values, color="blue")
