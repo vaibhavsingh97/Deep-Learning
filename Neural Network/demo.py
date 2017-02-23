@@ -1,5 +1,6 @@
 from numpy import exp, array, random, dot
 
+
 class NeuralNetwork():
     """docstring for ."""
     def __init__(self):
@@ -40,11 +41,6 @@ class NeuralNetwork():
     def predict(self, inputs):
         # pass inputs through our neural network (our singe neuron)
         return self.__sigmoid(dot(inputs, self.synaptic_weights))
-
-
-
-
-
 
 
 if __name__ == '__main__':
