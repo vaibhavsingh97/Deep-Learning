@@ -63,6 +63,6 @@ if __name__ == '__main__':
     print(neural_network.synaptic_weights)
 
     # Test the neural network
-    print('predicting')
+    print('predicting...')
     print('considering new situation [1, 0, 0] -> ?: ')
     print(neural_network.predict(array([1, 0, 0])))
