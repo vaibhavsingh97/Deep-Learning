@@ -1,8 +1,9 @@
 from numpy import exp, array, random, dot
-
+import numpy as np
 
 class NeuralNetwork():
     """docstring for ."""
+
     def __init__(self):
         # seed the random number generation, so it generates the same number
         # every time the program runs
@@ -12,18 +13,19 @@ class NeuralNetwork():
         # we assign random weights to 3 x 1 matrix, with a value in the range
         # of -1 to 1 a mean of 0
         # our neuron have 3 input connections and 1 output connections
-        self.synaptic_weights = 2 * random.random((3, 1))-1
+
+        self.synaptic_weights = 2 * np.random.random((3, 1)) - 1
 
     # Activation Function
     # The sigmoid function, which describes an s shaped curve
     # we pass the weighted sum of the inputs through this function
     # to normalise them between 0 and 1
     def __sigmoid(self, x):
-        return 1/(1+exp(-x))
+        return 1 / (1 + exp(-x))
 
     # gradient of the sigmoid curve
     def __sigmoid_deravative(self, x):
-        return x * (1-x)
+        return x * (1 - x)
 
     def train(self, training_set_inputs, training_set_outputs, number_of_training_iterations):
         for iteration in range(number_of_training_iterations):
@@ -31,9 +33,11 @@ class NeuralNetwork():
             output = self.predict(training_set_inputs)
 
             # calculate the error
-            error = training_set_outputs - output
-            # multiply the error by the input ad again by the gradient of the sigmoid curve
-            adjustments = dot(training_set_inputs.T, error*self.__sigmoid_deravative(output))
+            error = (training_set_outputs - output)
+            # multiply the error by the input ad again by the gradient of the
+            # sigmoid curve
+            adjustments = dot(training_set_inputs.T, error *
+                              self.__sigmoid_deravative(output))
 
             # adjust the weights
             self.synaptic_weights += adjustments
