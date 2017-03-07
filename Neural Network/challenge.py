@@ -15,7 +15,7 @@ class NeuralNetwork():
         # more the number of nodes in hidden layer more the confident the
         # neural network in predicting
         l2 = 5
-        l3 = 4
+        l3 = 6
 
         # assign random weights to the matrix
         # (no. of nodes in previous layer) x (no. of nodes in following layer)
@@ -36,20 +36,45 @@ class NeuralNetwork():
             # passing training set through our neual network
             # a2 means activation fed to the second layer
             a2 = self.__sigmoid(dot(training_set_inputs, self.synaptic_weights1))
-            # print("Dot hota ya hai")
-            # print(dot(training_set_inputs, self.synaptic_weights1))
-            # print("sigmoid ka kya result hai?")
-            # print(a2)
+            print("============================================================")
+            print("Dot product output of 2nd Layer")
+            print(dot(training_set_inputs, self.synaptic_weights1))
+            print("Sigmoid function output")
+            print(a2)
+            print("============================================================")
             a3 = self.__sigmoid(dot(a2, self.synaptic_weights2))
+            print("============================================================")
+            print("Dot product output of 3rd Layer")
+            print(dot(a2, self.synaptic_weights2))
+            print("Sigmoid function output")
+            print(a3)
+            print("============================================================")
             output = self.__sigmoid(dot(a3, self.synaptic_weights3))
+            print("============================================================")
+            print("Dot product output layer")
+            print(dot(a3, self.synaptic_weights3))
+            print("Sigmoid function output")
+            print(output)
+            print("============================================================")
 
             # calculatng error
             delta4 = (training_set_outputs - output)
-            # delta4 = (training_set_outputs - output)* self.__sigmoid_deravative(output)
+            print("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
+            print("Error:")
+            print(delta4)
+            print("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
 
             # finding errors in each layer
             delta3 = dot(self.synaptic_weights3, delta4.T) * (self.__sigmoid_deravative(a3).T)
+            print("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
+            print("Error in Layer 3:")
+            print(delta3)
+            print("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
             delta2 = dot(self.synaptic_weights2, delta3) * (self.__sigmoid_deravative(a2).T)
+            print("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
+            print("Error in LAyer 2:")
+            print(delta2)
+            print("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
 
             # adjustments(gradient) in each layer
             adjustment3 = dot(a3.T, delta4)
@@ -60,7 +85,6 @@ class NeuralNetwork():
             self.synaptic_weights1 += adjustment1
             self.synaptic_weights2 += adjustment2
             self.synaptic_weights3 += adjustment3
-
 
     def forward_pass(self, inputs):
         # passing our inputs into neural networks
